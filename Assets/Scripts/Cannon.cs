@@ -27,7 +27,7 @@ public class Cannon : MonoBehaviour
         {
             gameObject.transform.position += new Vector3(-0.01f, 0, 0);
         }
-        Vector3 pos = gameObject.transform.position;
+       // Vector3 pos = gameObject.transform.position;
         gameObject.transform.position = new Vector3(
             Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 1, maxScreen.x - 1), 
             0, gameObject.transform.position.z);
@@ -38,7 +38,9 @@ public class Cannon : MonoBehaviour
             Vector3 spawnPos = gameObject.transform.position;
             //spawnPos.z += 0.5f;
             // Instantiate the laser
-            GameObject obj = Instantiate(laser, spawnPos, Quaternion.identity) as GameObject;
+            Instantiate(laser, spawnPos, Quaternion.identity);
+
+           // GameObject obj = Instantiate(laser, spawnPos, Quaternion.identity) as GameObject;
         }
     }
 }
