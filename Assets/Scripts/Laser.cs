@@ -28,4 +28,15 @@ public class Laser : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collider collider = collision.collider;
+        if (collider.CompareTag("Alien"))
+        {
+            Alien alien = collider.GetComponent<Alien>();
+            alien.Die();
+            Destroy(gameObject);
+        } 
+    }
 }
