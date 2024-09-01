@@ -11,8 +11,11 @@ public class Cannon : MonoBehaviour
     }
 
     // Update is called once per frame
+    public GameObject laser;
+
     void Update()
     {
+        // Update player movements
         Vector3 minScreen = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 maxScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, Screen.height));
 
@@ -27,6 +30,15 @@ public class Cannon : MonoBehaviour
         Vector3 pos = gameObject.transform.position;
         gameObject.transform.position = new Vector3(
             Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 1, maxScreen.x - 1), 
-            0, gameObject.transform.position.z); 
+            0, gameObject.transform.position.z);
+
+        // Check for player fire - left click
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Vector3 spawnPos = gameObject.transform.position;
+            //spawnPos.z += 0.5f;
+            // Instantiate the laser
+            GameObject obj = Instantiate(laser, spawnPos, Quaternion.identity) as GameObject;
+        }
     }
 }
