@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Global : MonoBehaviour
 {
+    public LinkedList<GameObject> aliensList;
     public GameObject objToSpawn;
     public Vector3 originInScreenCoords;
+    public int numAliensToSpawn;
+    public int numRows;
     public int score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,23 +21,29 @@ public class Global : MonoBehaviour
         // Spawning aliens
         float width = Screen.width;
         float height = Screen.height;
-        float padding = 300.0f;
-        int numAliensToSpawn = 11;
-        int numRows = 5;
-       // float vertSpawn = 200.0f;
+        float padding = 400.0f;
+        numAliensToSpawn = 11;
+        numRows = 5;
+
         float vertPadding = 200.0f; // from top of scene 
 
-        for (int rows = numRows - 1; rows >= 0; rows--)
+        aliensList = new LinkedList<GameObject>();
+
+        for (int rows = 0; rows < numRows; rows++)
         {
             for (int i = 0; i < numAliensToSpawn; i++)
             {
-                float horizontalPos = i * ((width - padding * 2) / (numAliensToSpawn - 1)) + padding; //Random.Range(0.0f, width);
-                                                                                                      //Debug.Log("width is "+ width);
-                // height / 2.0f - want aliens to take up half the screen
+                float horizontalPos = i * ((width - padding * 2) / (numAliensToSpawn - 1)) + padding;
+
+                // height / 3.0f - want aliens to take up a third of the screen
                 float verticalPos = height - vertPadding - rows * (( height / 3.0f) / (numRows - 1));
-                Instantiate(objToSpawn,
+                
+                GameObject alienObject = Instantiate(objToSpawn,
                     Camera.main.ScreenToWorldPoint(new Vector3(horizontalPos, verticalPos, originInScreenCoords.z)),
                     Quaternion.identity);
+
+                // add each alien spawned to a linked list of aliens
+                aliensList.AddLast(alienObject);
             }
         }
     }
@@ -40,6 +51,41 @@ public class Global : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float screenPadding = 100.0f;
+        bool change = false;
+
+        // Check if any alien object goes past bounds
+        // If so, then set change direction to be true
+        Vector3 maxHorizontal = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width - screenPadding, 0, 0));
+        Vector3 minHorizontal = Camera.main.ScreenToWorldPoint(new Vector3(screenPadding, 0, 0));
         
+        for (int i = 0; i < aliensList.Count; i++)
+        {
+            Alien alien = aliensList.ElementAt(i).GetComponent<Alien>();
+            if (alien != null)
+            {
+                if (alien.transform.position.x > maxHorizontal.x || alien.transform.position.x < minHorizontal.x) //alien.transform.position.x < screenPadding ||
+                {
+                    Debug.Log(" CHANGE IS TRUE !");
+                    change = true;
+                }
+            }
+        }
+
+        // If we need to change the direction, change it here
+        if (change)
+        {
+            for (int i = 0; i < aliensList.Count; i++)
+            {
+                Alien alien = aliensList.ElementAt(i).GetComponent<Alien>();
+
+                if (alien != null)
+                {
+                    alien.ChangeDirection();
+
+                    Debug.Log("In global: alien direction is " + aliensList.ElementAt(i).GetComponent<Alien>().thrust);
+                }
+            }
+        }
     }
 }

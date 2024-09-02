@@ -15,7 +15,7 @@ public class Cannon : MonoBehaviour
 
     void Update()
     {
-        // Update player movements
+        /* Update player movements */
         Vector3 minScreen = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 maxScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, Screen.height));
 
@@ -32,7 +32,7 @@ public class Cannon : MonoBehaviour
             Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 1, maxScreen.x - 1), 
             0, gameObject.transform.position.z);
 
-        // Check for player fire - left click
+        /* Check for player fire - left click */
         if (Input.GetButtonDown("Fire1"))
         {
             Vector3 spawnPos = gameObject.transform.position;

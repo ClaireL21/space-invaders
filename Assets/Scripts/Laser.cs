@@ -36,6 +36,7 @@ public class Laser : MonoBehaviour
         {
             Alien alien = collider.GetComponent<Alien>();
             alien.Die();
+            //alien.ChangeDirection();
             Destroy(gameObject);
         } 
     }
