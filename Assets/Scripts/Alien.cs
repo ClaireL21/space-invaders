@@ -6,6 +6,7 @@ using UnityEngine;
 public class Alien : MonoBehaviour
 {
     public Vector3 distance;
+    public int pointValue;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,9 @@ public class Alien : MonoBehaviour
 
         // do not passively decelerate
         GetComponent<Rigidbody>().drag = 0;
+
+        // set point value
+        pointValue = 10;
     }
 
     public void ChangeDirection()
@@ -28,7 +32,7 @@ public class Alien : MonoBehaviour
         gameObject.transform.position += distance;
     }
 
-    public GameObject deathExplosion;
+    public GameObject deathExplosion;   // particle effect
     public void Die()
     {
         Instantiate(deathExplosion, gameObject.transform.position,
@@ -38,6 +42,7 @@ public class Alien : MonoBehaviour
         GameObject obj = GameObject.Find("GlobalObject");
         Global g = obj.GetComponent<Global>();
         g.aliensList.Remove(gameObject);
+        g.score += pointValue;
         Destroy(gameObject);
     }
 }

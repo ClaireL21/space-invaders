@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Global : MonoBehaviour
 {
+    // Variables for spawning aliens
     public LinkedList<GameObject> aliensList;
     public GameObject objToSpawn;
     public Vector3 originInScreenCoords;
     public int numAliensToSpawn;
     public int numRows;
+    
     public int score;
 
     // Start is called before the first frame update
