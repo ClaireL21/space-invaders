@@ -275,6 +275,7 @@ MonoBehaviour:
   numAliensToSpawn: 0
   numRows: 0
   score: 0
+  shieldUnit: {fileID: 304644612071014110, guid: 55df7f3778655544fbf9ec0346a1246e, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

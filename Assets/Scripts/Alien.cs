@@ -16,9 +16,6 @@ public class Alien : MonoBehaviour
         distance.x = 0.002f;
         moveDown = false;
 
-        // do not passively decelerate
-        GetComponent<Rigidbody>().drag = 0;
-
         // set point value
         pointValue = 10;
     }

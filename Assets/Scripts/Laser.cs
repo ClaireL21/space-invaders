@@ -1,29 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public Vector3 thrust;
+    public Vector3 distance;
 
     // Start is called before the first frame update
     void Start()
     {
         // travel straight in the Z-axis
-        thrust.z = 350.0f;
-
-        // do not passively decelerate
-        GetComponent<Rigidbody>().drag = 0;
-
-        // apply thrust once, no need to apply again
-        GetComponent<Rigidbody>().AddRelativeForce(thrust);
-
+        distance.z = 0.01f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.position += distance;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -34,6 +28,12 @@ public class Laser : MonoBehaviour
             Alien alien = collider.GetComponent<Alien>();
             alien.Die();
             Destroy(gameObject);
-        } 
+        } else if (collider.CompareTag("Shield"))
+        {
+            Debug.Log("Shiedl collided");
+            Shield shield = collider.GetComponent<Shield>();
+            shield.Die();
+            Destroy(gameObject);
+        }
     }
 }

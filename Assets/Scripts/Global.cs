@@ -13,6 +13,7 @@ public class Global : MonoBehaviour
     public int numRows;
     
     public int score;
+    public GameObject shieldUnit;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,34 @@ public class Global : MonoBehaviour
                 // add each alien spawned to a linked list of aliens
                 aliensList.AddLast(alienObject);
             }
+        }
+
+        // Spawn a row of shields
+        int numShields = 4;
+        float widthShieldUnit = 22.0f; // TODO: find this using math // Mathf.Abs(Camera.main.ScreenToWorldPoint(new Vector3(0.2f, 0, 0)).x);
+        float shieldHorPos = 400.0f;
+        float shieldHorPadding = 225.0f;
+        float oldHorPos;
+        float shieldVertPos;
+        Debug.Log("Width shield unit: " + widthShieldUnit);
+        for (int i = 0; i < numShields; i++)
+        {
+            shieldVertPos = 200.0f;
+            oldHorPos = shieldHorPos;
+
+            for (int r = 0; r < 3; r++)
+            {
+                shieldHorPos = oldHorPos;
+                for (int unit = 0; unit < 5; unit++)
+                {
+                    Instantiate(shieldUnit,
+                       Camera.main.ScreenToWorldPoint(new Vector3(shieldHorPos, shieldVertPos, originInScreenCoords.z)),
+                       Quaternion.identity);
+                    shieldHorPos += widthShieldUnit;
+                }
+                shieldVertPos += widthShieldUnit;
+            }
+            shieldHorPos += shieldHorPadding;
         }
     }
 

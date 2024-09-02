@@ -35,6 +35,7 @@ public class Cannon : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Vector3 spawnPos = gameObject.transform.position;
+            spawnPos.z += 0.5f;
 
             // Instantiate the laser
             Instantiate(laser, spawnPos, Quaternion.identity);

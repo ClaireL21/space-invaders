@@ -146,4 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee76a3ba20618e44ea05fd45d3ce1516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: {x: 0, y: 0, z: 0}
+  pointValue: 0
   deathExplosion: {fileID: 753215783184816240, guid: b591beeadbd4f304886b652e648ece22, type: 3}
