@@ -7,12 +7,14 @@ public class Alien : MonoBehaviour
 {
     public Vector3 distance;
     public int pointValue;
+    bool moveDown;
 
     // Start is called before the first frame update
     void Start()
     {
         // travel straight in the x-axis
-        distance.x = 0.001f;
+        distance.x = 0.002f;
+        moveDown = false;
 
         // do not passively decelerate
         GetComponent<Rigidbody>().drag = 0;
@@ -24,11 +26,17 @@ public class Alien : MonoBehaviour
     public void ChangeDirection()
     {
         distance.x *= -1;
+        moveDown = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (moveDown)
+        {
+            gameObject.transform.position += new Vector3(0, 0, -0.3f);
+            moveDown = false;
+        }
         gameObject.transform.position += distance;
     }
 
