@@ -10,7 +10,7 @@ public class Laser : MonoBehaviour
     void Start()
     {
         // travel straight in the Z-axis
-        thrust.z = 250.0f;
+        thrust.z = 350.0f;
 
         // do not passively decelerate
         GetComponent<Rigidbody>().drag = 0;

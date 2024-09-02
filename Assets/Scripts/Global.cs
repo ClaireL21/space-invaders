@@ -18,7 +18,7 @@ public class Global : MonoBehaviour
         score = 0;
         originInScreenCoords = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
 
-        // Spawning aliens
+        // Spawn an array of aliens
         float width = Screen.width;
         float height = Screen.height;
         float padding = 400.0f;
@@ -62,13 +62,9 @@ public class Global : MonoBehaviour
         for (int i = 0; i < aliensList.Count; i++)
         {
             Alien alien = aliensList.ElementAt(i).GetComponent<Alien>();
-            if (alien != null)
+            if (alien.transform.position.x > maxHorizontal.x || alien.transform.position.x < minHorizontal.x)
             {
-                if (alien.transform.position.x > maxHorizontal.x || alien.transform.position.x < minHorizontal.x) //alien.transform.position.x < screenPadding ||
-                {
-                    Debug.Log(" CHANGE IS TRUE !");
-                    change = true;
-                }
+                change = true;
             }
         }
 
@@ -78,13 +74,7 @@ public class Global : MonoBehaviour
             for (int i = 0; i < aliensList.Count; i++)
             {
                 Alien alien = aliensList.ElementAt(i).GetComponent<Alien>();
-
-                if (alien != null)
-                {
-                    alien.ChangeDirection();
-
-                    Debug.Log("In global: alien direction is " + aliensList.ElementAt(i).GetComponent<Alien>().distance);
-                }
+                alien.ChangeDirection();
             }
         }
     }
