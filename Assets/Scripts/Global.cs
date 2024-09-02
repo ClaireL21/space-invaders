@@ -54,8 +54,8 @@ public class Global : MonoBehaviour
         float screenPadding = 100.0f;
         bool change = false;
 
-        // Check if any alien object goes past bounds
-        // If so, then set change direction to be true
+        /*Check if any alien object goes past bounds
+        If so, then set change direction to be true*/
         Vector3 maxHorizontal = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width - screenPadding, 0, 0));
         Vector3 minHorizontal = Camera.main.ScreenToWorldPoint(new Vector3(screenPadding, 0, 0));
         
@@ -83,7 +83,7 @@ public class Global : MonoBehaviour
                 {
                     alien.ChangeDirection();
 
-                    Debug.Log("In global: alien direction is " + aliensList.ElementAt(i).GetComponent<Alien>().thrust);
+                    Debug.Log("In global: alien direction is " + aliensList.ElementAt(i).GetComponent<Alien>().distance);
                 }
             }
         }

@@ -15,9 +15,6 @@ public class Laser : MonoBehaviour
         // do not passively decelerate
         GetComponent<Rigidbody>().drag = 0;
 
-        // set the direction it will travel in
-       // GetComponent<Rigidbody>().MoveRotation(heading);
-
         // apply thrust once, no need to apply again
         GetComponent<Rigidbody>().AddRelativeForce(thrust);
 
@@ -36,7 +33,6 @@ public class Laser : MonoBehaviour
         {
             Alien alien = collider.GetComponent<Alien>();
             alien.Die();
-            //alien.ChangeDirection();
             Destroy(gameObject);
         } 
     }
