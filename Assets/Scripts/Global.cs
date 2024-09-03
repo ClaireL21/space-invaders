@@ -31,6 +31,17 @@ public class Global : MonoBehaviour
         timer = 0;
         shootPeriod = 1.5f; // An alien shoots every 1.5 seconds
 
+        // Initialize the alienGroups linked list
+        alienGroups = new LinkedList<LinkedList<GameObject>>();
+        /*for (int i = 0; i < numAliensToSpawn; i ++)
+        {
+            LinkedList<GameObject> list = new LinkedList<GameObject>();
+            alienGroups.AddLast(list);
+            Debug.Log("alien groups size inside: " + alienGroups.Count);
+
+        }
+        Debug.Log("alien groups size : " + alienGroups.Count);*/
+
         // Spawn an array of aliens
         float width = Screen.width;
         float height = Screen.height;
@@ -41,7 +52,6 @@ public class Global : MonoBehaviour
         float vertPadding = 200.0f; // from top of scene 
 
         aliensList = new LinkedList<GameObject>();
-        alienGroups = new LinkedList<LinkedList<GameObject>>();
 
         for (int rows = 0; rows < numRows; rows++)
         {
@@ -58,10 +68,22 @@ public class Global : MonoBehaviour
 
                 // add each alien spawned to a linked list of aliens
                 aliensList.AddLast(alienObject);
+                //Debug.Log("hello");
+                if (alienGroups.Count > i)
+                {
+                    alienGroups.ElementAt(i).AddFirst(alienObject);
+                } else
+                {
+                    LinkedList<GameObject> list = new LinkedList<GameObject>();
+                    list.AddLast(alienObject);
+                    alienGroups.AddLast(list);
+                }
                 //alienGroups.ElementAt(i).AddFirst(alienObject); // need to instantiate empty linked list and add it
+                //Debug.Log("bye");
             }
         }
 
+        Debug.Log("aliengroups: " + alienGroups);
         // Spawn a row of shields
         int numShields = 4;
         float widthShieldUnit = 22.0f; // TODO: find this using math // Mathf.Abs(Camera.main.ScreenToWorldPoint(new Vector3(0.2f, 0, 0)).x);
@@ -127,12 +149,15 @@ public class Global : MonoBehaviour
         Alien shooterAlien; // = aliensList.ElementAt(0).GetComponent<Alien>();
         LinkedList<GameObject> shooters = new LinkedList<GameObject>();
 
-        for (int i = 0; i < alienGroups.Count; i++)
-        {
-            shooters.AddLast(alienGroups.ElementAt(i).First);
-        }
-        int rand = Random.Range(0, shooters.Count);
-        shooterAlien = aliensList.ElementAt(rand).GetComponent<Alien>();
+        /* for (int i = 0; i < alienGroups.Count; i++)
+         {
+             //sGameObject curr = 
+             shooters.AddLast(alienGroups.ElementAt(i).First);
+         }*/
+
+        int rand = Random.Range(0, alienGroups.Count);
+        GameObject shooterObj = alienGroups.ElementAt(rand).ElementAt(0);
+        shooterAlien = shooterObj.GetComponent<Alien>(); // GetComponent<Alien>();
         if (timer > shootPeriod)
         {
             timer = 0;
