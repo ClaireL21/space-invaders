@@ -56,7 +56,7 @@ public class Alien : MonoBehaviour
         Global g = obj.GetComponent<Global>();
         g.aliensList.Remove(gameObject);
 
-        // remove the correct alien using LLLL
+        // And delete it from the Groups representation of aliens (for shooting)
         // remove the group if all aliens in the group are dead
         for (int i = 0; i < g.alienGroups.Count; i++)
         {
@@ -74,5 +74,22 @@ public class Alien : MonoBehaviour
         }
         g.score += pointValue;
         Destroy(gameObject);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collider collider = collision.collider;
+        if (collider.CompareTag("Cannon"))
+        {
+            Cannon cannon = collider.GetComponent<Cannon>();
+            cannon.Die();
+            //Destroy(gameObject);
+        }
+        else if (collider.CompareTag("Shield"))
+        {
+            //Debug.Log("Shiedl collided");
+            Shield shield = collider.GetComponent<Shield>();
+            shield.Die();
+            //Destroy(gameObject);
+        }
     }
 }

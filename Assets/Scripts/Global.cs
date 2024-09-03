@@ -31,16 +31,8 @@ public class Global : MonoBehaviour
         timer = 0;
         shootPeriod = 1.5f; // An alien shoots every 1.5 seconds
 
-        // Initialize the alienGroups linked list
+        // Initialize the alienGroups linked list for shooting
         alienGroups = new LinkedList<LinkedList<GameObject>>();
-        /*for (int i = 0; i < numAliensToSpawn; i ++)
-        {
-            LinkedList<GameObject> list = new LinkedList<GameObject>();
-            alienGroups.AddLast(list);
-            Debug.Log("alien groups size inside: " + alienGroups.Count);
-
-        }
-        Debug.Log("alien groups size : " + alienGroups.Count);*/
 
         // Spawn an array of aliens
         float width = Screen.width;
@@ -66,9 +58,8 @@ public class Global : MonoBehaviour
                     Camera.main.ScreenToWorldPoint(new Vector3(horizontalPos, verticalPos, originInScreenCoords.z)),
                     Quaternion.identity);
 
-                // add each alien spawned to a linked list of aliens
+                // add each alien spawned to a linked list of aliens - for shooting
                 aliensList.AddLast(alienObject);
-                //Debug.Log("hello");
                 if (alienGroups.Count > i)
                 {
                     alienGroups.ElementAt(i).AddFirst(alienObject);
@@ -78,12 +69,9 @@ public class Global : MonoBehaviour
                     list.AddLast(alienObject);
                     alienGroups.AddLast(list);
                 }
-                //alienGroups.ElementAt(i).AddFirst(alienObject); // need to instantiate empty linked list and add it
-                //Debug.Log("bye");
             }
         }
 
-        Debug.Log("aliengroups: " + alienGroups);
         // Spawn a row of shields
         int numShields = 4;
         float widthShieldUnit = 22.0f; // TODO: find this using math // Mathf.Abs(Camera.main.ScreenToWorldPoint(new Vector3(0.2f, 0, 0)).x);
@@ -91,7 +79,7 @@ public class Global : MonoBehaviour
         float shieldHorPadding = 225.0f;
         float oldHorPos;
         float shieldVertPos;
-        Debug.Log("Width shield unit: " + widthShieldUnit);
+
         for (int i = 0; i < numShields; i++)
         {
             shieldVertPos = 200.0f;
@@ -146,18 +134,10 @@ public class Global : MonoBehaviour
 
         /* Control Alien Shooting */
         timer += Time.deltaTime;
-        Alien shooterAlien; // = aliensList.ElementAt(0).GetComponent<Alien>();
-        LinkedList<GameObject> shooters = new LinkedList<GameObject>();
-
-        /* for (int i = 0; i < alienGroups.Count; i++)
-         {
-             //sGameObject curr = 
-             shooters.AddLast(alienGroups.ElementAt(i).First);
-         }*/
 
         int rand = Random.Range(0, alienGroups.Count);
         GameObject shooterObj = alienGroups.ElementAt(rand).ElementAt(0);
-        shooterAlien = shooterObj.GetComponent<Alien>(); // GetComponent<Alien>();
+        Alien shooterAlien = shooterObj.GetComponent<Alien>();
         if (timer > shootPeriod)
         {
             timer = 0;
