@@ -7,12 +7,20 @@ public class Global : MonoBehaviour
 {
     // Variables for spawning aliens
     public LinkedList<GameObject> aliensList;
+    public LinkedList<LinkedList<GameObject>> alienGroups;
     public GameObject objToSpawn;
     public Vector3 originInScreenCoords;
     public int numAliensToSpawn;
     public int numRows;
-    
+
+    // Variables for spawning alien bullets
+    public float timer;
+    public float shootPeriod;
+
+    // Score
     public int score;
+
+    // Shield
     public GameObject shieldUnit;
 
     // Start is called before the first frame update
@@ -20,6 +28,8 @@ public class Global : MonoBehaviour
     {
         score = 0;
         originInScreenCoords = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
+        timer = 0;
+        shootPeriod = 1.5f; // An alien shoots every 1.5 seconds
 
         // Spawn an array of aliens
         float width = Screen.width;
@@ -31,6 +41,7 @@ public class Global : MonoBehaviour
         float vertPadding = 200.0f; // from top of scene 
 
         aliensList = new LinkedList<GameObject>();
+        alienGroups = new LinkedList<LinkedList<GameObject>>();
 
         for (int rows = 0; rows < numRows; rows++)
         {
@@ -47,6 +58,7 @@ public class Global : MonoBehaviour
 
                 // add each alien spawned to a linked list of aliens
                 aliensList.AddLast(alienObject);
+                //alienGroups.ElementAt(i).AddFirst(alienObject); // need to instantiate empty linked list and add it
             }
         }
 
@@ -82,11 +94,12 @@ public class Global : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* Control Alien movement */
         float screenPadding = 100.0f;
         bool change = false;
 
-        /*Check if any alien object goes past bounds
-        If so, then set change direction to be true*/
+        /* Check if any alien object goes past bounds
+        If so, then set change direction to be true */
         Vector3 maxHorizontal = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width - screenPadding, 0, 0));
         Vector3 minHorizontal = Camera.main.ScreenToWorldPoint(new Vector3(screenPadding, 0, 0));
         
@@ -107,6 +120,23 @@ public class Global : MonoBehaviour
                 Alien alien = aliensList.ElementAt(i).GetComponent<Alien>();
                 alien.ChangeDirection();
             }
+        }
+
+        /* Control Alien Shooting */
+        timer += Time.deltaTime;
+        Alien shooterAlien; // = aliensList.ElementAt(0).GetComponent<Alien>();
+        LinkedList<GameObject> shooters = new LinkedList<GameObject>();
+
+        for (int i = 0; i < alienGroups.Count; i++)
+        {
+            shooters.AddLast(alienGroups.ElementAt(i).First);
+        }
+        int rand = Random.Range(0, shooters.Count);
+        shooterAlien = aliensList.ElementAt(rand).GetComponent<Alien>();
+        if (timer > shootPeriod)
+        {
+            timer = 0;
+            shooterAlien.Shoot();
         }
     }
 }

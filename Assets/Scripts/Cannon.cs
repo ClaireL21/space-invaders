@@ -41,4 +41,13 @@ public class Cannon : MonoBehaviour
             Instantiate(laser, spawnPos, Quaternion.identity);
         }
     }
+
+    public GameObject deathExplosion;   // particle effect
+    public void Die()
+    {
+        Instantiate(deathExplosion, gameObject.transform.position,
+            Quaternion.AngleAxis(-90, Vector3.right));
+
+        Destroy(gameObject);
+    }
 }

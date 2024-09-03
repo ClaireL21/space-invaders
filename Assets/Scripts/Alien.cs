@@ -37,6 +37,13 @@ public class Alien : MonoBehaviour
         gameObject.transform.position += distance;
     }
 
+    public GameObject enemyBullet;
+    public void Shoot()
+    {
+        Instantiate(enemyBullet, gameObject.transform.position, 
+            Quaternion.identity);
+    }
+
     public GameObject deathExplosion;   // particle effect
     public void Die()
     {
@@ -47,6 +54,16 @@ public class Alien : MonoBehaviour
         GameObject obj = GameObject.Find("GlobalObject");
         Global g = obj.GetComponent<Global>();
         g.aliensList.Remove(gameObject);
+        // remove the correct alien using LLLL
+        // remove the group if all aliens in the group are dead
+        /*for (int i = 0; i < g.alienGroups.Count; i++)
+        {
+            
+            if (g.alienGroups.ElementAt(i) != null)
+            {
+
+            }
+        }*/
         g.score += pointValue;
         Destroy(gameObject);
     }
