@@ -75,21 +75,4 @@ public class Alien : MonoBehaviour
         g.score += pointValue;
         Destroy(gameObject);
     }
-   /* private void OnCollisionEnter(Collision collision)
-    {
-        Collider collider = collision.collider;
-        if (collider.CompareTag("Cannon"))
-        {
-            Cannon cannon = collider.GetComponent<Cannon>();
-            cannon.Die();
-            //Destroy(gameObject);
-        }
-        else if (collider.CompareTag("Shield"))
-        {
-            //Debug.Log("Shiedl collided");
-            Shield shield = collider.GetComponent<Shield>();
-            shield.Die();
-            //Destroy(gameObject);
-        }
-    }*/
 }

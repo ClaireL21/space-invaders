@@ -15,10 +15,10 @@ public class Shield : MonoBehaviour
     {
         
     }
-    public void Die()
+/*    public void Die()
     {
         Destroy(gameObject);
-    }
+    }*/
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -28,7 +28,6 @@ public class Shield : MonoBehaviour
             Destroy(gameObject);
         } else if (collision.tag == "Alien")
         {
-            //Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }

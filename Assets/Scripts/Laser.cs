@@ -29,13 +29,5 @@ public class Laser : MonoBehaviour
             alien.Die();
             Destroy(gameObject);
         } 
-        
-        /*else if (collider.CompareTag("Shield"))
-        {
-            Debug.Log("Shiedl collided");
-            Shield shield = collider.GetComponent<Shield>();
-            shield.Die();
-            Destroy(gameObject);
-        }*/
     }
 }

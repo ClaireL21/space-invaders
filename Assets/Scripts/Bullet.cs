@@ -22,19 +22,5 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Collider collider = collision.collider;
-       /* if (collider.CompareTag("Cannon"))
-        {
-            Cannon cannon = collider.GetComponent<Cannon>();
-            cannon.Die();
-            Destroy(gameObject);
-        }*/
-
-        /*else if (collider.CompareTag("Shield"))
-        {
-            Debug.Log("Shield collided");
-            Shield shield = collider.GetComponent<Shield>();
-            shield.Die();
-            Destroy(gameObject);
-        }*/
     }
 }
