@@ -276,6 +276,9 @@ MonoBehaviour:
   numRows: 0
   timer: 0
   shootPeriod: 0
+  mysteryTimer: 0
+  mysteryPeriod: 0
+  mysteryShip: {fileID: 3037800139220689254, guid: 5a94e073f656b234a964d38ccf77e11e, type: 3}
   score: 0
   shieldUnit: {fileID: 304644612071014110, guid: 55df7f3778655544fbf9ec0346a1246e, type: 3}
 --- !u!1 &705507993

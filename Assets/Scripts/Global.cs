@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Global : MonoBehaviour
 {
-    // Variables for spawning aliens
+    // Spawning aliens
     public LinkedList<GameObject> aliensList;
     public LinkedList<LinkedList<GameObject>> alienGroups;
     public GameObject objToSpawn;
@@ -13,9 +13,14 @@ public class Global : MonoBehaviour
     public int numAliensToSpawn;
     public int numRows;
 
-    // Variables for spawning alien bullets
+    // Spawning alien bullets
     public float timer;
     public float shootPeriod;
+
+    // Spawning mystery ship
+    public float mysteryTimer;
+    public float mysteryPeriod;
+    public GameObject mysteryShip;
 
     // Score
     public int score;
@@ -30,6 +35,8 @@ public class Global : MonoBehaviour
         originInScreenCoords = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
         timer = 0;
         shootPeriod = 1.5f; // An alien shoots every 1.5 seconds
+        mysteryTimer = 0;
+        mysteryPeriod = 25.0f;
 
         // Initialize the alienGroups linked list for shooting
         alienGroups = new LinkedList<LinkedList<GameObject>>();
@@ -154,6 +161,16 @@ public class Global : MonoBehaviour
         {
             timer = 0;
             shooterAlien.Shoot();
+        }
+
+        /* Control Mystery Ship Spawning */
+        mysteryTimer += Time.deltaTime;
+        if (mysteryTimer > mysteryPeriod)
+        {
+            Instantiate(mysteryShip,
+                    Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height - 100.0f, originInScreenCoords.z)),
+                    Quaternion.identity);
+            mysteryTimer = 0;
         }
     }
 }

@@ -11,7 +11,7 @@ public class Laser : MonoBehaviour
     void Start()
     {
         // travel straight in the Z-axis
-        distance.z = 0.01f;
+        distance.z = 0.02f;
     }
 
     // Update is called once per frame
@@ -28,6 +28,10 @@ public class Laser : MonoBehaviour
             Alien alien = collider.GetComponent<Alien>();
             alien.Die();
             Destroy(gameObject);
-        } 
+        } else if (collider.CompareTag("MysteryShip")) {
+            Mystery mystery = collider.GetComponent<Mystery>();
+            mystery.Die();
+            Destroy(gameObject);
+        }
     }
 }

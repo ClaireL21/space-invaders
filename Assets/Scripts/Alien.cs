@@ -16,9 +16,6 @@ public class Alien : MonoBehaviour
         // travel straight in the x-axis
         distance.x = 0.002f;
         moveDown = false;
-
-        // set point value
-        //pointValue = 10;
     }
 
     public void ChangeDirection()
