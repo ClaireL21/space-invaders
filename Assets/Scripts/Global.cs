@@ -28,11 +28,13 @@ public class Global : MonoBehaviour
     // Shield
     public GameObject shieldUnit;
 
+    public Camera orthoCam;
+
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
-        originInScreenCoords = Camera.main.WorldToScreenPoint(new Vector3(0, 0, 0));
+        originInScreenCoords = orthoCam.WorldToScreenPoint(new Vector3(0, 0, 0));
         timer = 0;
         shootPeriod = 1.5f; // An alien shoots every 1.5 seconds
         mysteryTimer = 0;
@@ -62,7 +64,7 @@ public class Global : MonoBehaviour
                 float verticalPos = height - vertPadding - rows * (( height / 3.0f) / (numRows - 1));
                 
                 GameObject alienObject = Instantiate(objToSpawn,
-                    Camera.main.ScreenToWorldPoint(new Vector3(horizontalPos, verticalPos, originInScreenCoords.z)),
+                    orthoCam.ScreenToWorldPoint(new Vector3(horizontalPos, verticalPos, originInScreenCoords.z)),
                     Quaternion.identity);
                 Alien alien = alienObject.GetComponent<Alien>();
                 if (rows == 0)
@@ -110,7 +112,7 @@ public class Global : MonoBehaviour
                 for (int unit = 0; unit < 5; unit++)
                 {
                     Instantiate(shieldUnit,
-                       Camera.main.ScreenToWorldPoint(new Vector3(shieldHorPos, shieldVertPos, originInScreenCoords.z)),
+                       orthoCam.ScreenToWorldPoint(new Vector3(shieldHorPos, shieldVertPos, originInScreenCoords.z)),
                        Quaternion.identity);
                     shieldHorPos += widthShieldUnit;
                 }
@@ -129,8 +131,8 @@ public class Global : MonoBehaviour
 
         /* Check if any alien object goes past bounds
         If so, then set change direction to be true */
-        Vector3 maxHorizontal = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width - screenPadding, 0, 0));
-        Vector3 minHorizontal = Camera.main.ScreenToWorldPoint(new Vector3(screenPadding, 0, 0));
+        Vector3 maxHorizontal = orthoCam.ScreenToWorldPoint(new Vector3(Screen.width - screenPadding, 0, 0));
+        Vector3 minHorizontal = orthoCam.ScreenToWorldPoint(new Vector3(screenPadding, 0, 0));
         
         for (int i = 0; i < aliensList.Count; i++)
         {
@@ -168,7 +170,7 @@ public class Global : MonoBehaviour
         if (mysteryTimer > mysteryPeriod)
         {
             Instantiate(mysteryShip,
-                    Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height - 100.0f, originInScreenCoords.z)),
+                    orthoCam.ScreenToWorldPoint(new Vector3(0, Screen.height - 100.0f, originInScreenCoords.z)),
                     Quaternion.identity);
             mysteryTimer = 0;
         }

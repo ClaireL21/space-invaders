@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    public Camera orthoCam;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +18,8 @@ public class Cannon : MonoBehaviour
     void Update()
     {
         /* Update player movements */
-        Vector3 minScreen = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
-        Vector3 maxScreen = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, Screen.height));
+        Vector3 minScreen = orthoCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 maxScreen = orthoCam.ScreenToWorldPoint(new Vector3(Screen.width, 0, Screen.height));
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
