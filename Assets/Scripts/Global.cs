@@ -57,6 +57,18 @@ public class Global : MonoBehaviour
                 GameObject alienObject = Instantiate(objToSpawn,
                     Camera.main.ScreenToWorldPoint(new Vector3(horizontalPos, verticalPos, originInScreenCoords.z)),
                     Quaternion.identity);
+                Alien alien = alienObject.GetComponent<Alien>();
+                if (rows == 0)
+                {
+                    alien.pointValue = 30;
+                }
+                else if (rows == 1 || rows == 2)
+                {
+                    alien.pointValue = 20;
+                } else
+                {
+                    alien.pointValue = 10;
+                }
 
                 // add each alien spawned to a linked list of aliens - for shooting
                 aliensList.AddLast(alienObject);

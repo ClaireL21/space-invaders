@@ -18,7 +18,7 @@ public class Alien : MonoBehaviour
         moveDown = false;
 
         // set point value
-        pointValue = 10;
+        //pointValue = 10;
     }
 
     public void ChangeDirection()

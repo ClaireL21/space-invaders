@@ -15,10 +15,6 @@ public class Shield : MonoBehaviour
     {
         
     }
-/*    public void Die()
-    {
-        Destroy(gameObject);
-    }*/
 
     private void OnTriggerEnter(Collider collision)
     {
