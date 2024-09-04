@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6884672565879165277}
   - component: {fileID: 1056292535388963690}
   - component: {fileID: 7198643430732078359}
-  - component: {fileID: 2466881101936464564}
   - component: {fileID: 2196891826884038407}
+  - component: {fileID: -2957383604291541977}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Alien
@@ -107,7 +107,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &2466881101936464564
+--- !u!114 &2196891826884038407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3700500670449603977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee76a3ba20618e44ea05fd45d3ce1516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: {x: 0, y: 0, z: 0}
+  pointValue: 0
+  enemyBullet: {fileID: 2402206166689386571, guid: 4e8d84b5475a71f499599f68a9815d9f, type: 3}
+  deathExplosion: {fileID: 753215783184816240, guid: b591beeadbd4f304886b652e648ece22, type: 3}
+--- !u!54 &-2957383604291541977
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,19 +150,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2196891826884038407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3700500670449603977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee76a3ba20618e44ea05fd45d3ce1516, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: {x: 0, y: 0, z: 0}
-  pointValue: 0
-  enemyBullet: {fileID: 2402206166689386571, guid: 4e8d84b5475a71f499599f68a9815d9f, type: 3}
-  deathExplosion: {fileID: 753215783184816240, guid: b591beeadbd4f304886b652e648ece22, type: 3}

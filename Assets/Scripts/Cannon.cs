@@ -50,4 +50,17 @@ public class Cannon : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.tag == "EnemyBullet")
+        {
+            Destroy(collision.gameObject);
+            Die();
+        }
+        else if (collision.tag == "Alien")
+        {
+            Die();
+        }
+    }
 }

@@ -19,4 +19,17 @@ public class Shield : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.tag == "Laser" || collision.tag == "EnemyBullet")
+        {
+            Destroy(collision.gameObject);
+            Destroy(gameObject);
+        } else if (collision.tag == "Alien")
+        {
+            //Destroy(collision.gameObject);
+            Destroy(gameObject);
+        }
+    }
 }
