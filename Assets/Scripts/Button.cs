@@ -24,10 +24,7 @@ public class Button : MonoBehaviour
 
     public void OnButtonPress()
     {
-        Debug.Log("Button pressed");
         orthoCamera.enabled = !orthoCamera.enabled;
         perspCamera.enabled = !perspCamera.enabled;
-        //Camera.main = orthoCamera;
-        // Camera.main.orthographic = !Camera.main.orthographic;
     }
 }

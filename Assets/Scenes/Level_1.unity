@@ -1457,7 +1457,7 @@ GameObject:
   - component: {fileID: 1894144491}
   - component: {fileID: 1894144490}
   m_Layer: 0
-  m_Name: Main Camera Copy
+  m_Name: OrthCamCalculations
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -95,7 +95,7 @@ public class Global : MonoBehaviour
 
         // Spawn a row of shields
         int numShields = 4;
-        float widthShieldUnit = 22.0f; // TODO: find this using math // Mathf.Abs(Camera.main.ScreenToWorldPoint(new Vector3(0.2f, 0, 0)).x);
+        float widthShieldUnit = 22.0f;
         float shieldHorPos = 400.0f;
         float shieldHorPadding = 225.0f;
         float oldHorPos;

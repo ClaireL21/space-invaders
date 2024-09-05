@@ -6,7 +6,7 @@ public class CamShake : MonoBehaviour
 {
     public bool start = false;
     public AnimationCurve curve;
-    public float duration = 1.0f;
+    public float duration = 0.8f;
 
     // Start is called before the first frame update
     void Start()
