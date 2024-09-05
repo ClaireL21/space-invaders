@@ -5,7 +5,8 @@ using UnityEngine;
 public class CamShake : MonoBehaviour
 {
     public bool start = false;
-    public float duration = 0.5f;
+    public AnimationCurve curve;
+    public float duration = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,8 @@ public class CamShake : MonoBehaviour
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
-            transform.position = startPosition + Random.insideUnitSphere;
+            float strength = curve.Evaluate(elapsedTime / duration);
+            transform.position = startPosition + Random.insideUnitSphere * strength;
             yield return null;
         }
         transform.position = startPosition;

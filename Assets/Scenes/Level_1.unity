@@ -229,6 +229,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.02268219
+      value: 0.0009422302
+      inSlope: 1.2934561
+      outSlope: 1.2934561
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.15401697
+      value: 0.170818
+      inSlope: -0.48666078
+      outSlope: -0.48666078
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.061758444
+    - serializedVersion: 3
+      time: 1.0095215
+      value: 0.0032997131
+      inSlope: -0.19581228
+      outSlope: -0.19581228
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   duration: 0.5
 --- !u!1 &223641915
 GameObject:
@@ -972,6 +1005,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.009552002
+      value: 0.008010864
+      inSlope: 0.4807614
+      outSlope: 0.4807614
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.094246835
+    - serializedVersion: 3
+      time: 0.13069572
+      value: 0.17332727
+      inSlope: -0.5303653
+      outSlope: -0.5303653
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.64014363
+      outWeight: 0.05719205
+    - serializedVersion: 3
+      time: 0.9976196
+      value: 0.0009422302
+      inSlope: -0.19884679
+      outSlope: -0.19884679
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   duration: 1
 --- !u!1 &1132377159
 GameObject:
@@ -1410,6 +1476,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   start: 0
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   duration: 1
 --- !u!81 &1894144491
 AudioListener:
