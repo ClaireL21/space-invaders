@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    public Camera orthoCam;
+    public Camera orthoCam;  // This camera is used purely for calculations (Main Camera Copy)
+    public Camera shakeOrthoCam;  // Orth cam for shaking (used for user's view rather than calculations)
+    public Camera shakePerspCam;  // Persp cam for shaking (used for user's view, in conjunction with ortho)
+    /*public float shake;
+    public float shakeAmount;
+    public float decreaseFactor;*/
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       /* shake = 0;
+        shakeAmount = 0.6f;
+        decreaseFactor = 0.1f;*/
     }
 
     // Update is called once per frame
@@ -42,11 +49,43 @@ public class Cannon : MonoBehaviour
             // Instantiate the laser
             Instantiate(laser, spawnPos, Quaternion.identity);
         }
+
+        /* Check for player shake */
+        /*if (shake > 0)
+        {
+            orthoCam.transform.localPosition = Random.insideUnitSphere * shakeAmount;
+            shake -= Time.deltaTime * decreaseFactor;
+            *//*Instantiate(deathExplosion, gameObject.transform.position,
+            Quaternion.AngleAxis(-90, Vector3.right));
+
+            Destroy(gameObject);*//*
+            Debug.Log("Camera was shook" + shake);
+        } else
+        {
+            shake = 0.0f;
+        }*/
     }
 
     public GameObject deathExplosion;   // particle effect
     public void Die()
     {
+        /*GameObject obj = GameObject.Find("GlobalObject");
+        Global g = obj.GetComponent<Global>();
+        g.score += pointValue;*/
+
+        GameObject obj = GameObject.Find("ButtonControl");
+        Button b = obj.GetComponent<Button>();
+        
+        if (b.orthoCamera.enabled)
+        {
+            shakeOrthoCam.GetComponent<CamShake>().start = true;
+        } else
+        {
+            shakePerspCam.GetComponent<CamShake>().start = true;
+        }
+
+        /*shake = 1.0f;
+        Debug.Log("shake gets set to 2");*/
         Instantiate(deathExplosion, gameObject.transform.position,
             Quaternion.AngleAxis(-90, Vector3.right));
 

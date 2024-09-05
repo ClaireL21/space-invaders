@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         // travel straight in the Z-axis
-        distance.z = -0.02f;
+        distance.z = -0.01f; // -0.02f;
     }
 
     // Update is called once per frame

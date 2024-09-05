@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public Camera orthoCamera;
+    // These two cameras are used to demonstrate 3d effect
+    // (ortho is Main Camera - NOT Main Camera Copy, which is used just for calculations)
+    public Camera orthoCamera; 
     public Camera perspCamera;
 
     // Start is called before the first frame update
@@ -25,6 +27,7 @@ public class Button : MonoBehaviour
         Debug.Log("Button pressed");
         orthoCamera.enabled = !orthoCamera.enabled;
         perspCamera.enabled = !perspCamera.enabled;
+        //Camera.main = orthoCamera;
         // Camera.main.orthographic = !Camera.main.orthographic;
     }
 }

@@ -28,7 +28,7 @@ public class Global : MonoBehaviour
     // Shield
     public GameObject shieldUnit;
 
-    public Camera orthoCam;
+    public Camera orthoCam; // This camera is used purely for calculations (Main Camera Copy)
 
     // Start is called before the first frame update
     void Start()
