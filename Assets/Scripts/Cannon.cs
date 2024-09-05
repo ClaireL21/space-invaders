@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    public Camera orthoCam;  // This camera is used purely for calculations (Main Camera Copy)
+    public Camera orthoCam;  // This camera is used purely for calculations (OrthoCamCalculations)
     public Camera shakeOrthoCam;  // Orth cam for shaking (used for user's view rather than calculations)
     public Camera shakePerspCam;  // Persp cam for shaking (used for user's view, in conjunction with ortho)
+    public int lives;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        lives = 3;
     }
 
     // Update is called once per frame
@@ -63,7 +64,11 @@ public class Cannon : MonoBehaviour
         Instantiate(deathExplosion, gameObject.transform.position,
             Quaternion.AngleAxis(-90, Vector3.right));
 
-        Destroy(gameObject);
+        lives -= 1;
+        if (lives == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
