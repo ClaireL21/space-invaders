@@ -36,17 +36,21 @@ public class Alien : MonoBehaviour
     }
 
     public GameObject enemyBullet;
+    public AudioClip bulletSound;
     public void Shoot()
     {
         Instantiate(enemyBullet, gameObject.transform.position, 
             Quaternion.identity);
+        // AudioSource.PlayClipAtPoint(bulletSound, gameObject.transform.position);
     }
 
     public GameObject deathExplosion;   // particle effect
+    public AudioClip deathSound;
     public void Die()
     {
         Instantiate(deathExplosion, gameObject.transform.position,
             Quaternion.AngleAxis(-90, Vector3.right));
+        AudioSource.PlayClipAtPoint(deathSound, gameObject.transform.position);
 
         // Delete that alien from the linked list of aliens
         GameObject obj = GameObject.Find("GlobalObject");

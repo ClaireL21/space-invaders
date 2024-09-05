@@ -1447,6 +1447,8 @@ MonoBehaviour:
   lives: 0
   laser: {fileID: 2408505789874100514, guid: 2f2781b63b151a947b200b4f363bf950, type: 3}
   deathExplosion: {fileID: 753215783184816240, guid: b591beeadbd4f304886b652e648ece22, type: 3}
+  deathSound: {fileID: 8300000, guid: ac4b26fae53d41d499bdb3ecdd661b5b, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 346721f64e57d52478257f0ca165935c, type: 3}
 --- !u!1 &1387909942
 GameObject:
   m_ObjectHideFlags: 0

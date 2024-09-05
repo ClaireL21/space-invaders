@@ -122,7 +122,9 @@ MonoBehaviour:
   distance: {x: 0, y: 0, z: 0}
   pointValue: 0
   enemyBullet: {fileID: 2402206166689386571, guid: 4e8d84b5475a71f499599f68a9815d9f, type: 3}
+  bulletSound: {fileID: 8300000, guid: 7a19088f6a815b34d8facb63335e1b83, type: 3}
   deathExplosion: {fileID: 753215783184816240, guid: b591beeadbd4f304886b652e648ece22, type: 3}
+  deathSound: {fileID: 8300000, guid: 05e26729e82e383479e949cae6e74998, type: 3}
 --- !u!54 &-2957383604291541977
 Rigidbody:
   m_ObjectHideFlags: 0

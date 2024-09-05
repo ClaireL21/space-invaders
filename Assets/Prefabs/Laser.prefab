@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b173bb98aa0209348bdaa4228f88e8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: {x: 0, y: 0, z: 0}
   distance: {x: 0, y: 0, z: 0}
+  laserSound: {fileID: 8300000, guid: fed937f05ac94874c8b3c40a8ac43496, type: 3}

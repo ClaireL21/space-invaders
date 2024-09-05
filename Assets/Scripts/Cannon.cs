@@ -48,8 +48,12 @@ public class Cannon : MonoBehaviour
     }
 
     public GameObject deathExplosion;   // particle effect
+    public AudioClip deathSound;
+    public AudioClip gameOverSound;
     public void Die()
     {
+        AudioSource.PlayClipAtPoint(deathSound, gameObject.transform.position);
+
         GameObject obj = GameObject.Find("ButtonControl");
         Button b = obj.GetComponent<Button>();
         
@@ -67,6 +71,7 @@ public class Cannon : MonoBehaviour
         lives -= 1;
         if (lives == 0)
         {
+            AudioSource.PlayClipAtPoint(gameOverSound, gameObject.transform.position);
             Destroy(gameObject);
         }
     }

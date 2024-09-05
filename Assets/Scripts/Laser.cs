@@ -14,10 +14,13 @@ public class Laser : MonoBehaviour
         distance.z = 0.02f;
     }
 
+    public AudioClip laserSound;
     // Update is called once per frame
     void Update()
     {
         gameObject.transform.position += distance;
+       // AudioSource.PlayClipAtPoint(laserSound, gameObject.transform.position);
+
     }
 
     private void OnCollisionEnter(Collision collision)
