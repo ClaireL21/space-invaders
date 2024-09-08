@@ -30,6 +30,9 @@ public class Global : MonoBehaviour
 
     public Camera orthoCam; // This camera is used purely for calculations (OrthoCamCalculations)
 
+    public GameOverScreen gameOverScreen;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -157,12 +160,15 @@ public class Global : MonoBehaviour
         timer += Time.deltaTime;
 
         int rand = Random.Range(0, alienGroups.Count);
-        GameObject shooterObj = alienGroups.ElementAt(rand).ElementAt(0);
-        Alien shooterAlien = shooterObj.GetComponent<Alien>();
-        if (timer > shootPeriod)
+        if (alienGroups.Count > 0)
         {
-            timer = 0;
-            shooterAlien.Shoot();
+            GameObject shooterObj = alienGroups.ElementAt(rand).ElementAt(0);
+            Alien shooterAlien = shooterObj.GetComponent<Alien>();
+            if (timer > shootPeriod)
+            {
+                timer = 0;
+                shooterAlien.Shoot();
+            }
         }
 
         /* Control Mystery Ship Spawning */
@@ -174,5 +180,21 @@ public class Global : MonoBehaviour
                     Quaternion.identity);
             mysteryTimer = 0;
         }
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.Setup(score);
+    }
+
+    public void DestroyAllAliens()
+    {
+        for (int i = 0; i < aliensList.Count; i++)
+        {
+            Alien alien = aliensList.ElementAt(i).GetComponent<Alien>();
+            Destroy(alien);
+        }
+        alienGroups.Clear();
+        aliensList.Clear();
     }
 }

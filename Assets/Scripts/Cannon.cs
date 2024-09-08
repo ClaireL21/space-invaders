@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
@@ -73,6 +74,14 @@ public class Cannon : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(gameOverSound, gameObject.transform.position);
             Destroy(gameObject);
+            GameObject g = GameObject.Find("GlobalObject");
+            Global globalObj = g.GetComponent<Global>();
+            globalObj.GameOver();
+            globalObj.DestroyAllAliens();
+            /*globalObj.alienGroups.Clear();
+            globalObj.aliensList.Clear();*/
+            //scoreText = gameObject.GetComponent<TMP_Text>();
+
         }
     }
 
