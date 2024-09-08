@@ -10,7 +10,7 @@ public class Mystery : MonoBehaviour
     void Start()
     {
         // travel straight in the x-axis
-        distance.x = 0.009f;
+        distance.x = 0.06f;
         pointValue = Random.Range(10, 30) * 10;
     }
 

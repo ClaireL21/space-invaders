@@ -27,11 +27,11 @@ public class Cannon : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            gameObject.transform.position += new Vector3(0.01f, 0, 0);
+            gameObject.transform.position += new Vector3(0.1f, 0, 0);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            gameObject.transform.position += new Vector3(-0.01f, 0, 0);
+            gameObject.transform.position += new Vector3(-0.1f, 0, 0);
         }
         gameObject.transform.position = new Vector3(
             Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 1, maxScreen.x - 1), 

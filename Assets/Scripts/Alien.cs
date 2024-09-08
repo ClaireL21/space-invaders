@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Alien : MonoBehaviour
@@ -14,7 +14,7 @@ public class Alien : MonoBehaviour
     void Start()
     {
         // travel straight in the x-axis
-        distance.x = 0.002f;
+        distance.x = 0.02f; // 0.002f
         moveDown = false;
     }
 
