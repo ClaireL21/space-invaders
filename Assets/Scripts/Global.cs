@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Global : MonoBehaviour
@@ -24,6 +25,7 @@ public class Global : MonoBehaviour
 
     // Score
     public int score;
+    public TMP_Text highScoreText;
 
     // Shield
     public GameObject shieldUnit;
@@ -42,6 +44,7 @@ public class Global : MonoBehaviour
         shootPeriod = 1.5f; // An alien shoots every 1.5 seconds
         mysteryTimer = 0;
         mysteryPeriod = 25.0f;
+        SetHighScoreUI();
 
         // Initialize the alienGroups linked list for shooting
         alienGroups = new LinkedList<LinkedList<GameObject>>();
@@ -196,5 +199,18 @@ public class Global : MonoBehaviour
         }
         alienGroups.Clear();
         aliensList.Clear();
+    }
+
+    public void CheckHighScore()
+    {
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
+    }
+
+    public void SetHighScoreUI()
+    {
+        highScoreText.text = PlayerPrefs.GetInt("HighScore", 0) + "";
     }
 }

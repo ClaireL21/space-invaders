@@ -77,6 +77,9 @@ public class Cannon : MonoBehaviour
             GameObject g = GameObject.Find("GlobalObject");
             Global globalObj = g.GetComponent<Global>();
             globalObj.GameOver();
+            globalObj.CheckHighScore();
+            globalObj.SetHighScoreUI();
+
             globalObj.DestroyAllAliens();
             /*globalObj.alienGroups.Clear();
             globalObj.aliensList.Clear();*/
