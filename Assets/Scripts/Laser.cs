@@ -6,35 +6,52 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     public Vector3 distance;
+    bool isActive;
 
     // Start is called before the first frame update
     void Start()
     {
         // travel straight in the Z-axis
-        distance.z = 0.2f;
+        distance.z = 0.02f;
+        isActive = true;
     }
 
     public AudioClip laserSound;
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position += distance;
-       // AudioSource.PlayClipAtPoint(laserSound, gameObject.transform.position);
+        if (isActive)
+        {
+            gameObject.transform.position += distance;
+        }
+        // AudioSource.PlayClipAtPoint(laserSound, gameObject.transform.position);
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Collider collider = collision.collider;
-        if (collider.CompareTag("Alien"))
+        if (isActive)
         {
-            Alien alien = collider.GetComponent<Alien>();
-            alien.Die();
-            Destroy(gameObject);
-        } else if (collider.CompareTag("MysteryShip")) {
-            Mystery mystery = collider.GetComponent<Mystery>();
-            mystery.Die();
-            Destroy(gameObject);
+            Collider collider = collision.collider;
+            if (collider.CompareTag("Alien"))
+            {
+                Alien alien = collider.GetComponent<Alien>();
+                alien.GetComponent<Rigidbody>().isKinematic = false;
+                gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
+                // alien.GetComponent<Rigidbody>().AddForce(distance * 10);
+                alien.Die();
+
+                //Destroy(gameObject);
+            }
+            else if (collider.CompareTag("MysteryShip"))
+            {
+                Mystery mystery = collider.GetComponent<Mystery>();
+                mystery.Die();
+                //Destroy(gameObject);
+            }
+            isActive = false;
         }
+        
     }
 }

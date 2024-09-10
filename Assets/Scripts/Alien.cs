@@ -9,30 +9,38 @@ public class Alien : MonoBehaviour
     public Vector3 distance;
     public int pointValue;
     bool moveDown;
+    public bool isActive;
 
     // Start is called before the first frame update
     void Start()
     {
         // travel straight in the x-axis
-        distance.x = 0.02f; // 0.002f
+        distance.x = 0.002f; // 0.002f
         moveDown = false;
+        isActive = true;
     }
 
     public void ChangeDirection()
     {
-        distance.x *= -1;
-        moveDown = true;
+        if (isActive)
+        {
+            distance.x *= -1;
+            moveDown = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (moveDown)
+        if (isActive)
         {
-            gameObject.transform.position += new Vector3(0, 0, -0.3f);
-            moveDown = false;
+            if (moveDown)
+            {
+                gameObject.transform.position += new Vector3(0, 0, -0.3f);
+                moveDown = false;
+            }
+            gameObject.transform.position += distance;
         }
-        gameObject.transform.position += distance;
     }
 
     public GameObject enemyBullet;
@@ -74,6 +82,11 @@ public class Alien : MonoBehaviour
             }
         }
         g.score += pointValue;
-        Destroy(gameObject);
+       // gameObject.GetComponent<Rigidbody>().AddForce(distance);
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(0.0f, 50.0f, 0.0f));
+
+        isActive = false;
+       // Destroy(gameObject);
     }
 }

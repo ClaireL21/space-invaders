@@ -27,11 +27,11 @@ public class Cannon : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            gameObject.transform.position += new Vector3(0.1f, 0, 0);
+            gameObject.transform.position += new Vector3(0.01f, 0, 0);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            gameObject.transform.position += new Vector3(-0.1f, 0, 0);
+            gameObject.transform.position += new Vector3(-0.01f, 0, 0);
         }
         gameObject.transform.position = new Vector3(
             Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 1, maxScreen.x - 1), 
@@ -88,16 +88,31 @@ public class Cannon : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.tag == "EnemyBullet")
+        if (collider.tag == "EnemyBullet")
         {
-            Destroy(collision.gameObject);
-            Die();
+            Bullet bullet = collider.GetComponent<Bullet>();
+
+            //Destroy(collision.gameObject);
+            if (bullet.isActive)
+            {
+                Die();
+                Debug.Log("Cannon died from bullet");
+                bullet.isActive = false;
+            }
+            collider.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         }
-        else if (collision.tag == "Alien")
+        else if (collider.tag == "Alien")
         {
-            Die();
+            Alien alien = collider.GetComponent<Alien>();
+            if (alien.isActive)
+            {
+                Die();
+                Debug.Log("Cannon died from alien");
+
+                alien.isActive = false;
+            }
         }
     }
 }
