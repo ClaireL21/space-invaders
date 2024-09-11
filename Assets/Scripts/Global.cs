@@ -30,6 +30,8 @@ public class Global : MonoBehaviour
     // Shield
     public GameObject shieldUnit;
 
+    // Bullet supply
+
     public Camera orthoCam; // This camera is used purely for calculations (OrthoCamCalculations)
 
     public GameOverScreen gameOverScreen;

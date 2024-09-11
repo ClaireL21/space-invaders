@@ -34,7 +34,7 @@ public class Cannon : MonoBehaviour
             gameObject.transform.position += new Vector3(-0.1f, 0, 0);
         }
         gameObject.transform.position = new Vector3(
-            Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 1, maxScreen.x - 1), 
+            Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 3, maxScreen.x - 3), 
             0, gameObject.transform.position.z);
 
         /* Check for player fire - left click */
