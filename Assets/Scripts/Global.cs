@@ -23,6 +23,11 @@ public class Global : MonoBehaviour
     public float mysteryPeriod;
     public GameObject mysteryShip;
 
+    // Spawning Bullet Supply Ammunition
+    public float supplyTimer;
+    public float supplyPeriod;
+    public GameObject supplyObj;
+
     // Score
     public int score;
     public TMP_Text highScoreText;
@@ -47,6 +52,8 @@ public class Global : MonoBehaviour
         shootPeriod = 1.5f; // An alien shoots every 1.5 seconds
         mysteryTimer = 0;
         mysteryPeriod = 25.0f;
+        supplyTimer = 0;
+        supplyPeriod = 15.0f;
         // bulletSupply = 10;
         SetHighScoreUI();
 
@@ -186,6 +193,22 @@ public class Global : MonoBehaviour
                     orthoCam.ScreenToWorldPoint(new Vector3(0, Screen.height - 100.0f, originInScreenCoords.z)),
                     Quaternion.identity);
             mysteryTimer = 0;
+        }
+
+        /* Control Ammunition Spawning */
+        supplyTimer += Time.deltaTime;
+        Vector3 minScreen = orthoCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
+        Vector3 maxScreen = orthoCam.ScreenToWorldPoint(new Vector3(Screen.width, 0, Screen.height));
+        double max = Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 3, maxScreen.x - 3);
+        Debug.Log("max is " + (maxScreen.x - 3));
+        int rand_supply_spawn = Random.Range(400, 1500);
+        Debug.Log("rand supply: " + rand_supply_spawn);
+        if (supplyTimer > supplyPeriod)
+        {
+            Instantiate(supplyObj,
+                    orthoCam.ScreenToWorldPoint(new Vector3(rand_supply_spawn, Screen.height, originInScreenCoords.z - 0.35f)),
+                    Quaternion.identity);
+            supplyTimer = 0;
         }
     }
 
