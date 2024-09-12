@@ -15,7 +15,7 @@ public class Alien : MonoBehaviour
     void Start()
     {
         // travel straight in the x-axis
-        distance.x = 0.02f; // 0.002f
+        distance.x = 0.002f; // 0.002f
         moveDown = false;
         isActive = true;
     }

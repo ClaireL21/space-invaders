@@ -12,7 +12,7 @@ public class Laser : MonoBehaviour
     void Start()
     {
         // travel straight in the Z-axis
-        distance.z = 0.2f;
+        distance.z = 0.02f;
         isActive = true;
     }
 

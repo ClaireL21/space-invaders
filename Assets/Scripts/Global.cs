@@ -31,6 +31,7 @@ public class Global : MonoBehaviour
     public GameObject shieldUnit;
 
     // Bullet supply
+    // public int bulletSupply;
 
     public Camera orthoCam; // This camera is used purely for calculations (OrthoCamCalculations)
 
@@ -46,6 +47,7 @@ public class Global : MonoBehaviour
         shootPeriod = 1.5f; // An alien shoots every 1.5 seconds
         mysteryTimer = 0;
         mysteryPeriod = 25.0f;
+        // bulletSupply = 10;
         SetHighScoreUI();
 
         // Initialize the alienGroups linked list for shooting

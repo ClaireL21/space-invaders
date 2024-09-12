@@ -1774,7 +1774,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -4.8}
-  m_LocalScale: {x: 10.972187, y: 0.6, z: 1}
+  m_LocalScale: {x: 12.2054615, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2051,6 +2051,7 @@ MonoBehaviour:
   shakeOrthoCam: {fileID: 963194227}
   shakePerspCam: {fileID: 91638860}
   lives: 0
+  bulletSupply: 0
   laser: {fileID: 2408505789874100514, guid: 2f2781b63b151a947b200b4f363bf950, type: 3}
   deathExplosion: {fileID: 753215783184816240, guid: b591beeadbd4f304886b652e648ece22, type: 3}
   deathSound: {fileID: 8300000, guid: ac4b26fae53d41d499bdb3ecdd661b5b, type: 3}
@@ -2063,7 +2064,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328599073}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2080,7 +2081,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 124
+  m_Constraints: 44
   m_CollisionDetection: 2
 --- !u!1 &1379711504
 GameObject:

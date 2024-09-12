@@ -9,11 +9,15 @@ public class Cannon : MonoBehaviour
     public Camera shakeOrthoCam;  // Orth cam for shaking (used for user's view rather than calculations)
     public Camera shakePerspCam;  // Persp cam for shaking (used for user's view, in conjunction with ortho)
     public int lives;
+    
+    // Bullet supply
+    public int bulletSupply;
 
     // Start is called before the first frame update
     void Start()
     {
         lives = 3;
+        bulletSupply = 10;
     }
 
     // Update is called once per frame
@@ -27,11 +31,15 @@ public class Cannon : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            gameObject.transform.position += new Vector3(0.1f, 0, 0);
+            gameObject.transform.position += new Vector3(0.01f, 0, 0);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            gameObject.transform.position += new Vector3(-0.1f, 0, 0);
+            gameObject.transform.position += new Vector3(-0.01f, 0, 0);
+        }
+        else if (Input.GetAxisRaw("Vertical") > 0)
+        {
+            gameObject.transform.position += new Vector3(+0.01f, 0, 0);
         }
         gameObject.transform.position = new Vector3(
             Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 3, maxScreen.x - 3), 
@@ -40,11 +48,16 @@ public class Cannon : MonoBehaviour
         /* Check for player fire - left click */
         if (Input.GetButtonDown("Fire1"))
         {
-            Vector3 spawnPos = gameObject.transform.position;
-            spawnPos.z += 0.5f;
+            if (bulletSupply  > 0)
+            {
+                Vector3 spawnPos = gameObject.transform.position;
+                spawnPos.z += 0.5f;
 
-            // Instantiate the laser
-            Instantiate(laser, spawnPos, Quaternion.identity);
+                // Instantiate the laser
+                Instantiate(laser, spawnPos, Quaternion.identity);
+                bulletSupply -= 1;
+            }
+            
         }
     }
 
