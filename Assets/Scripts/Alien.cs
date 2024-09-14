@@ -20,8 +20,8 @@ public class Alien : MonoBehaviour
     void Start()
     {
         // travel straight in the x-axis
-        GameObject g = GameObject.Find("GlobalObject");
-        distance.x = g.GetComponent<Global>().alienSpeed;
+       // GameObject g = GameObject.Find("GlobalObject");
+        distance.x = 0.002f; // g.GetComponent<Global>().alienSpeed;
        // distance.x = 0.002f; // 0.002f
         moveDown = false;
         isActive = true;
@@ -75,7 +75,7 @@ public class Alien : MonoBehaviour
 
     public GameObject deathExplosion;   // particle effect
     public AudioClip deathSound;
-    public void Die()
+    public void Die(bool destroy)
     {
         Instantiate(deathExplosion, gameObject.transform.position,
             Quaternion.AngleAxis(-90, Vector3.right));
@@ -108,6 +108,10 @@ public class Alien : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().AddTorque(new Vector3(0.0f, 50.0f, 0.0f));
 
         isActive = false;
+        if (destroy)
+        {
+            Destroy(gameObject);
+        }
        // Destroy(gameObject);
     }
 }

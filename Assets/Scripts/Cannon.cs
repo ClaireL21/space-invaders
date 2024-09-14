@@ -17,7 +17,7 @@ public class Cannon : MonoBehaviour
     void Start()
     {
         lives = 3;
-        bulletSupply = 10;
+        bulletSupply = 20;
     }
 
     // Update is called once per frame
@@ -31,16 +31,16 @@ public class Cannon : MonoBehaviour
 
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            gameObject.transform.position += new Vector3(0.01f, 0, 0);
+            gameObject.transform.position += new Vector3(0.02f, 0, 0);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            gameObject.transform.position += new Vector3(-0.01f, 0, 0);
+            gameObject.transform.position += new Vector3(-0.02f, 0, 0);
         }
-        else if (Input.GetAxisRaw("Vertical") > 0)
+       /* else if (Input.GetAxisRaw("Vertical") > 0)
         {
             gameObject.transform.position += new Vector3(+0.01f, 0, 0);
-        }
+        }*/
         gameObject.transform.position = new Vector3(
             Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 3, maxScreen.x - 3), 
             0, gameObject.transform.position.z);

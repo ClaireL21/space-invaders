@@ -24,7 +24,12 @@ public class Shield : MonoBehaviour
             Destroy(gameObject);
         } else if (collision.tag == "Alien")
         {
-            Destroy(gameObject);
+            Alien alien = collision.GetComponent<Alien>();
+            if (alien.isActive)
+            {
+                Destroy(gameObject);
+
+            }
         }
     }
 }

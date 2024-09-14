@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ammunition : MonoBehaviour
 {
     public Vector3 distance;
+    /*public GameObject cannonObj;*/
     Cannon cannon;
 
     // Start is called before the first frame update
@@ -12,6 +13,7 @@ public class Ammunition : MonoBehaviour
     {
         GameObject g = GameObject.Find("Cannon");
         cannon = g.GetComponent<Cannon>();
+        //cannon = cannonObj.GetComponent<Cannon>();
     }
 
     // Update is called once per frame

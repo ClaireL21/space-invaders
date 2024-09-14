@@ -19,10 +19,15 @@ public class Global : MonoBehaviour
     public float shootPeriod;
 
     // Alien speed
-    public float alienTimer;
+    /*public float alienTimer;
     public float alienPeriod;
     public int alienIters;
     public float alienSpeed;
+*/
+    // Boss alien
+    public float bossAlienTimer;
+    public float bossAlienPeriod;
+    public GameObject bossAlien;
 
     // Spawning mystery ship
     public float mysteryTimer;
@@ -60,10 +65,14 @@ public class Global : MonoBehaviour
         mysteryPeriod = 25.0f;
         supplyTimer = 0;
         supplyPeriod = 15.0f;
-        alienTimer = 0;
+
+        bossAlienPeriod = 12.0f;
+        bossAlienTimer = 0;
+
+        /*alienTimer = 0;
         alienPeriod = 2;
         alienIters = 1;
-        alienSpeed = 0.002f;
+        alienSpeed = 0.002f;*/
 
         // bulletSupply = 10;
         SetHighScoreUI();
@@ -180,20 +189,7 @@ public class Global : MonoBehaviour
                 alien.ChangeDirection();
             }
         }
-        else
-        {
-            // increase the speed of aliens as time goes on
-            /*alienTimer += Time.deltaTime;
-            if (alienTimer > alienIters * alienPeriod)
-            {
-                alienIters += 1;
-                alienSpeed += 0.001f;
-            }*/
-        }
-
-       
-
-
+        
         /* Control Alien Shooting */
         timer += Time.deltaTime;
 
@@ -207,6 +203,18 @@ public class Global : MonoBehaviour
                 timer = 0;
                 shooterAlien.Shoot();
             }
+        }
+
+        /* Control Boss Alien */
+        bossAlienTimer += Time.deltaTime;
+
+        if (bossAlienTimer > bossAlienPeriod)
+        {
+            bossAlienTimer = 0;
+            bossAlienPeriod += 5;
+            Instantiate(bossAlien,
+                    orthoCam.ScreenToWorldPoint(new Vector3(200, Screen.height - 185.0f, originInScreenCoords.z)),
+                    Quaternion.identity);
         }
 
         /* Control Mystery Ship Spawning */

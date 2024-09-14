@@ -13,6 +13,7 @@ public class Laser : MonoBehaviour
     {
         // travel straight in the Z-axis
         distance.z = 0.02f;
+        //gameObject.GetComponent<Rigidbody>().AddForce(distance * 1000);
         isActive = true;
     }
 
@@ -40,7 +41,7 @@ public class Laser : MonoBehaviour
                 gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 gameObject.GetComponent<Rigidbody>().useGravity = true;
                 // alien.GetComponent<Rigidbody>().AddForce(distance * 10);
-                alien.Die();
+                alien.Die(false);
 
                 //Destroy(gameObject);
             }
@@ -49,7 +50,16 @@ public class Laser : MonoBehaviour
                 Mystery mystery = collider.GetComponent<Mystery>();
                 mystery.Die();
                 //Destroy(gameObject);
-            }
+            } else if (collider.CompareTag("BossAlien"))
+            {
+                BossAlien boss = collider.GetComponent<BossAlien>();
+                boss.Die();
+                Destroy(gameObject);
+            } 
+           /* else if (collider.CompareTag("Laser"))
+            {
+                Destroy(gameObject);
+            }*/
             isActive = false;
         }
         
