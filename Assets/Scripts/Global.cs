@@ -18,6 +18,12 @@ public class Global : MonoBehaviour
     public float timer;
     public float shootPeriod;
 
+    // Alien speed
+    public float alienTimer;
+    public float alienPeriod;
+    public int alienIters;
+    public float alienSpeed;
+
     // Spawning mystery ship
     public float mysteryTimer;
     public float mysteryPeriod;
@@ -54,6 +60,11 @@ public class Global : MonoBehaviour
         mysteryPeriod = 25.0f;
         supplyTimer = 0;
         supplyPeriod = 15.0f;
+        alienTimer = 0;
+        alienPeriod = 2;
+        alienIters = 1;
+        alienSpeed = 0.002f;
+
         // bulletSupply = 10;
         SetHighScoreUI();
 
@@ -169,6 +180,19 @@ public class Global : MonoBehaviour
                 alien.ChangeDirection();
             }
         }
+        else
+        {
+            // increase the speed of aliens as time goes on
+            /*alienTimer += Time.deltaTime;
+            if (alienTimer > alienIters * alienPeriod)
+            {
+                alienIters += 1;
+                alienSpeed += 0.001f;
+            }*/
+        }
+
+       
+
 
         /* Control Alien Shooting */
         timer += Time.deltaTime;

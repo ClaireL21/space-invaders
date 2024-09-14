@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -11,13 +12,23 @@ public class Alien : MonoBehaviour
     bool moveDown;
     public bool isActive;
 
+    public float alienTimer;
+    public float alienPeriod;
+    public int alienIters;
+
     // Start is called before the first frame update
     void Start()
     {
         // travel straight in the x-axis
-        distance.x = 0.002f; // 0.002f
+        GameObject g = GameObject.Find("GlobalObject");
+        distance.x = g.GetComponent<Global>().alienSpeed;
+       // distance.x = 0.002f; // 0.002f
         moveDown = false;
         isActive = true;
+
+        alienTimer = 0;
+        alienPeriod = 3;
+        alienIters = 1;
     }
 
     public void ChangeDirection()
@@ -38,6 +49,16 @@ public class Alien : MonoBehaviour
             {
                 gameObject.transform.position += new Vector3(0, 0, -0.3f);
                 moveDown = false;
+            } else
+            {
+               /* GameObject g = GameObject.Find("GlobalObject");
+                distance.x = g.GetComponent<Global>().alienSpeed;*/
+            }
+            alienTimer += Time.deltaTime;
+            if (alienTimer > alienIters * alienPeriod)
+            {
+                alienIters += 1;
+                distance.x += (Mathf.Abs(distance.x) / distance.x) * 0.0005f; // 1.2f;
             }
             gameObject.transform.position += distance;
         }
