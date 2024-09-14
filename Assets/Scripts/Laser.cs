@@ -30,6 +30,10 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.GetComponent<Rigidbody>().velocity.z < 0)
+        {
+            isActive = false;
+        }
         if (isActive)
         {
             //gameObject.transform.position += distance;
@@ -72,7 +76,7 @@ public class Laser : MonoBehaviour
         {
             Destroy(gameObject);
         }*/
-        isActive = false;
+        //isActive = false;
        }
         
     }
