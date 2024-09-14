@@ -24,7 +24,7 @@ public class BossAlien : MonoBehaviour
         orthoCam = g.GetComponent<Global>().orthoCam;
 
         bossTimer = 0f;
-        bossPeriod = 2f;
+        bossPeriod = 5f;
         
     }
 

@@ -21,7 +21,7 @@ public class Cannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lives = 3;
+        lives = 5;
         bulletSupply = 20;
         speed = 0.02f;
         //numAliens = 0;
@@ -39,7 +39,7 @@ public class Cannon : MonoBehaviour
         {
             float direction = Mathf.Abs(speed) / speed;
 
-            speed = Mathf.Max(0.001f, 0.02f - 0.002f * ground.numAliens);
+            speed = Mathf.Max(0.004f, 0.02f - 0.001f * ground.numAliens);
             speed *= direction;
 
 
