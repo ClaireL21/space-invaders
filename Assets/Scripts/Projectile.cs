@@ -22,7 +22,10 @@ public class Projectile : MonoBehaviour
         if (collider.CompareTag("Alien"))
         {
             Alien alien = collider.GetComponent<Alien>();
-            alien.Die(true);
+            if (alien.isActive)
+            {
+                alien.Die(true);
+            }
             Destroy(gameObject);
         }
     }
