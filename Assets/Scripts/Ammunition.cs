@@ -26,7 +26,7 @@ public class Ammunition : MonoBehaviour
         Collider collider = collision.collider;
         if (collider.tag == "GroundBox")
         {
-            Debug.Log("Ammunition hit ground");
+            //Debug.Log("Ammunition hit ground");
             Die();
             cannon.bulletSupply = Mathf.Min(30, cannon.bulletSupply + 10);
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
@@ -8,7 +9,11 @@ public class Cannon : MonoBehaviour
     public Camera orthoCam;  // This camera is used purely for calculations (OrthoCamCalculations)
     public Camera shakeOrthoCam;  // Orth cam for shaking (used for user's view rather than calculations)
     public Camera shakePerspCam;  // Persp cam for shaking (used for user's view, in conjunction with ortho)
+    public float speed;
     public int lives;
+    public Ground ground;
+
+   // public int numAliens;
     
     // Bullet supply
     public int bulletSupply;
@@ -18,10 +23,30 @@ public class Cannon : MonoBehaviour
     {
         lives = 3;
         bulletSupply = 20;
+        speed = 0.02f;
+        //numAliens = 0;
+
+        /*GameObject g = GameObject.Find("Ground");
+        ground = g.GetComponent<Ground>();*/
     }
 
     // Update is called once per frame
     public GameObject laser;
+
+    void setSpeed()
+    {
+        if (ground.numAliens >  0)
+        {
+            float direction = Mathf.Abs(speed) / speed;
+
+            speed = Mathf.Max(0.001f, 0.02f - 0.002f * ground.numAliens);
+            speed *= direction;
+
+
+            /*speed = 0.01f;
+            speed += -1 * (Mathf.Abs(speed) / speed) * ground.numAliens * 0.5f;*/
+        }
+    }
 
     void Update()
     {
@@ -29,13 +54,17 @@ public class Cannon : MonoBehaviour
         Vector3 minScreen = orthoCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 maxScreen = orthoCam.ScreenToWorldPoint(new Vector3(Screen.width, 0, Screen.height));
 
+        setSpeed();
+
         if (Input.GetAxisRaw("Horizontal") > 0)
         {
-            gameObject.transform.position += new Vector3(0.02f, 0, 0);
+            speed = Mathf.Abs(speed);
+            gameObject.transform.position += new Vector3(speed, 0, 0);
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
         {
-            gameObject.transform.position += new Vector3(-0.02f, 0, 0);
+            speed = -1 * Mathf.Abs(speed);
+            gameObject.transform.position += new Vector3(speed, 0, 0);
         }
        /* else if (Input.GetAxisRaw("Vertical") > 0)
         {
@@ -112,7 +141,6 @@ public class Cannon : MonoBehaviour
             if (bullet.isActive)
             {
                 Die();
-                Debug.Log("Cannon died from bullet");
                 bullet.isActive = false;
             }
             collider.gameObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -123,7 +151,6 @@ public class Cannon : MonoBehaviour
             if (alien.isActive)
             {
                 Die();
-                Debug.Log("Cannon died from alien");
 
                 alien.isActive = false;
             }

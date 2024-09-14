@@ -232,9 +232,9 @@ public class Global : MonoBehaviour
         Vector3 minScreen = orthoCam.ScreenToWorldPoint(new Vector3(0, 0, 0));
         Vector3 maxScreen = orthoCam.ScreenToWorldPoint(new Vector3(Screen.width, 0, Screen.height));
         double max = Mathf.Clamp(gameObject.transform.position.x, minScreen.x + 3, maxScreen.x - 3);
-        Debug.Log("max is " + (maxScreen.x - 3));
+        //Debug.Log("max is " + (maxScreen.x - 3));
         int rand_supply_spawn = Random.Range(400, 1500);
-        Debug.Log("rand supply: " + rand_supply_spawn);
+        //Debug.Log("rand supply: " + rand_supply_spawn);
         if (supplyTimer > supplyPeriod)
         {
             Instantiate(supplyObj,
