@@ -39,7 +39,7 @@ public class Cannon : MonoBehaviour
         {
             float direction = Mathf.Abs(speed) / speed;
 
-            speed = Mathf.Max(0.004f, 0.02f - 0.001f * ground.numAliens);
+            speed = Mathf.Max(0.004f, 0.02f - 0.002f * ground.numAliens);
             speed *= direction;
 
 
