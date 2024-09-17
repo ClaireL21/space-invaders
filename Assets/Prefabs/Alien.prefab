@@ -33,7 +33,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4159406102979913920}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6884672565879165277
@@ -51,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3700500670449603977}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -121,6 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: {x: 0, y: 0, z: 0}
   pointValue: 0
+  isActive: 0
+  alienTimer: 0
+  alienPeriod: 0
+  alienIters: 0
   enemyBullet: {fileID: 2402206166689386571, guid: 4e8d84b5475a71f499599f68a9815d9f, type: 3}
   bulletSound: {fileID: 8300000, guid: 7a19088f6a815b34d8facb63335e1b83, type: 3}
   deathExplosion: {fileID: 753215783184816240, guid: b591beeadbd4f304886b652e648ece22, type: 3}
@@ -152,3 +157,73 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &4482089526290337579
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9157417515020339070}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000000014305114
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.08294315
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.019070778
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 73c37efc80c2a164091047190cd05312, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2e7b871c06e13004cb99281fc7465969, type: 2}
+    - target: {fileID: 919132149155446097, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+      propertyPath: m_Name
+      value: vehicle_playerShip
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+--- !u!4 &4159406102979913920 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9f240c60a1c49ba489e325eb001e655e, type: 3}
+  m_PrefabInstance: {fileID: 4482089526290337579}
+  m_PrefabAsset: {fileID: 0}
